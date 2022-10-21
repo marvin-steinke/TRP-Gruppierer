@@ -56,7 +56,7 @@ def extractData(data) -> list[Fencer]:
     fencers = []
     clubs = []
     path = resource_path('./package/res/clubs.json')
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         try:
             clubs = json.load(f)
         except:
