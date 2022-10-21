@@ -1,3 +1,4 @@
+import os
 import sys
 import csv
 import fitz
@@ -16,6 +17,13 @@ groups = []
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS # type: ignore
+    except:
+        base_path = os.path.abspath('.')
+    return os.path.join(base_path, relative_path)
 
 def startGrouping(new_filepath = None):
     global current_filepath
@@ -47,7 +55,7 @@ def parseCSV(filepath) -> list[list[str]]:
 def extractData(data) -> list[Fencer]:
     fencers = []
     clubs = []
-    with open('./package/res/clubs.json', 'r') as f:
+    with open(resource_path('./package/res/clubs.json'), 'r') as f:
         try:
             clubs = json.load(f)
         except:
@@ -66,7 +74,7 @@ def buildPDF(place, date) -> fitz.Document:
     global groups
     if not groups: raise Exception('no groups present')
     groups = window.getGroups()
-    doc = fitz.Document('./package/res/Beobachtungsbogen.pdf')
+    doc = fitz.Document(resource_path('./package/res/Beobachtungsbogen.pdf'))
     page_index = 0
     for group_index, group in enumerate(deepcopy(groups)):
         while group:
