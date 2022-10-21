@@ -55,7 +55,8 @@ def parseCSV(filepath) -> list[list[str]]:
 def extractData(data) -> list[Fencer]:
     fencers = []
     clubs = []
-    with open(resource_path('./package/res/clubs.json'), 'r') as f:
+    path = resource_path('./package/res/clubs.json')
+    with open(path, 'r') as f:
         try:
             clubs = json.load(f)
         except:
@@ -74,7 +75,8 @@ def buildPDF(place, date) -> fitz.Document:
     global groups
     if not groups: raise Exception('no groups present')
     groups = window.getGroups()
-    doc = fitz.Document(resource_path('./package/res/Beobachtungsbogen.pdf'))
+    path = resource_path('./package/res/Beobachtungsbogen.pdf')
+    doc = fitz.Document(path)
     page_index = 0
     for group_index, group in enumerate(deepcopy(groups)):
         while group:

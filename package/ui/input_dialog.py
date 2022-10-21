@@ -5,6 +5,7 @@ class InputDialog(QDialog):
         super().__init__()
         self.place = QLineEdit()
         self.date = QLineEdit()
+        self.setWindowTitle('Beobachtungsbögen erstellen')
         btn_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel, self)
 
         layout = QFormLayout(self)
