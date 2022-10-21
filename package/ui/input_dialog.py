@@ -1,8 +1,10 @@
 from PyQt6.QtWidgets import QDialog, QFormLayout, QLineEdit, QDialogButtonBox
+from PyQt6.QtGui import QIcon
 
 class InputDialog(QDialog):
-    def __init__(self):
+    def __init__(self, icon_path):
         super().__init__()
+        self.setWindowIcon(QIcon(icon_path))
         self.place = QLineEdit()
         self.date = QLineEdit()
         self.setWindowTitle('Beobachtungsbögen erstellen')

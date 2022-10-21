@@ -6,8 +6,8 @@ from .. import app
 class Toolbar(QToolBar):
     def __init__(self, parent, icon_path):
         super().__init__()
-        self.setWindowIcon(QIcon(icon_path))
         self.setMovable(False)
+        self.icon_path = icon_path
         self.parent = parent
         self.addBtnCSV()
         self.addSeparator()
@@ -66,7 +66,7 @@ class Toolbar(QToolBar):
 
     def onBtnPDF(self):
         if app.groups:
-            dialog = InputDialog()
+            dialog = InputDialog(self.icon_path)
             if dialog.exec():
                 place, date = dialog.getInput()
                 doc = app.buildPDF(place, date)
