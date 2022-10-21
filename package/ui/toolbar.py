@@ -1,13 +1,14 @@
 from PyQt6.QtWidgets import QLabel, QToolBar, QFileDialog
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QIcon
 from .input_dialog import InputDialog
 from .. import app
 
 class Toolbar(QToolBar):
-    def __init__(self,parent):
+    def __init__(self, parent, icon_path):
         super().__init__()
-        self.parent = parent
+        self.setWindowIcon(QIcon(icon_path))
         self.setMovable(False)
+        self.parent = parent
         self.addBtnCSV()
         self.addSeparator()
         self.addBtnPDF()

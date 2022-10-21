@@ -14,16 +14,17 @@ weapons_num = 1
 current_filepath = None
 groups = []
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS # type: ignore
     except:
         base_path = os.path.abspath('.')
     return os.path.join(base_path, relative_path)
+
+app = QApplication(sys.argv)
+icon_path = resource_path('./package/res/wappen.ico')
+window = MainWindow(icon_path)
+window.show()
 
 def startGrouping(new_filepath = None):
     global current_filepath

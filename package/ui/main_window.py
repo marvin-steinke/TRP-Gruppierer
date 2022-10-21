@@ -2,16 +2,18 @@ from .q_drag_drop_list_widget import QDragDropListWidget
 from .flow_layout import FlowLayout
 from .toolbar import Toolbar
 from .. import app
+from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QScrollArea,
                              QStatusBar, QListWidgetItem)
 import itertools
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, icon_path):
         super().__init__()
+        self.icon_path = icon_path
         self.setWindowTitle('TRP Gruppierer')
-        self.toolbar = Toolbar(self)
+        self.toolbar = Toolbar(self, icon_path)
         self.addToolBar(self.toolbar)
         self.initLayout()
 
@@ -56,3 +58,4 @@ class MainWindow(QMainWindow):
         vscroll.setWidget(widget)
         self.setCentralWidget(vscroll)
         self.setStatusBar(QStatusBar(self))
+        self.setWindowIcon(QIcon(self.icon_path))
