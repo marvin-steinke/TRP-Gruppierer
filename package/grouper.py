@@ -18,7 +18,6 @@ class Grouper():
                 case 'S': saber.append(fencer)
                 case _: raise ValueError
         weapons = [foil, epee, saber]
-        print(saber[0])
         percentages = []
         for weapon in weapons:
             if not weapon:
