@@ -84,7 +84,12 @@ def buildPDF(place, date) -> fitz.Document:
             doc.fullcopy_page(0, to=-1)
             page_index += 1
             page = doc[page_index]
-            weapon = 'Florett' if group[0].weapon == 'F' else 'Degen'
+            weapon = ''
+            match group[0].weapon:
+                case 'F': weapon = 'Florett'
+                case 'D': weapon = 'Degen'
+                case 'S': weapon = 'Säbel'
+                case _: raise ValueError
             page.insert_text(fitz.Point(285, 105), weapon, fontsize = 28) # type: ignore
             page.insert_text(fitz.Point(780, 161), f'({group_index + 1})') # type: ignore
             if place and date:
